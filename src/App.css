@@ -86,6 +86,7 @@
   border: gray 1px solid;
   aspect-ratio: 1/1;
   background-color: #EEEEEE;
+  min-width: 15px;
   margin: 1px;
   display: flex;
   justify-content: center;
@@ -94,8 +95,8 @@
 
 .current{
   background-color: black;
-  width: 75%;
-  height: 75%;
+  width: 50%;
+  aspect-ratio: 1/1;
   border-radius: 50%;
 }
 
@@ -105,4 +106,22 @@
 
 .origin{
   background-color: lightgreen;
+  border:3px solid red;
+  box-sizing: border-box;
+}
+
+.origin.N {
+  border-top: none;
+}
+
+.origin.S {
+  border-bottom: none;
+}
+
+.origin.E {
+  border-right: none;
+}
+
+.origin.W {
+  border-left: none;
 }

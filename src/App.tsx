@@ -5,7 +5,7 @@ interface Cell {
     explored: boolean,
     origin: boolean,
     current: boolean
-    originExitDirection?: 'N' | 'W' | 'E' | 'S'
+    originExitDirection?: string
     size?: number
 }
 
@@ -75,7 +75,7 @@ function App() {
 
     const [grid, setGrid] = useState(generateGrid(gridDimensions, origin))
     const [current, setCurrent] = useState({row: origin.row, col: origin.col})
-    const [originExitDirection, setOriginExitDirection] = useState<'N' | 'W' | 'E' | 'S'>('N')
+    const [originExitDirection, setOriginExitDirection] = useState('N')
 
     const relativeCurrent = {row: current.row - origin.row, col: current.col - origin.col}
 
@@ -98,7 +98,7 @@ function App() {
             <div className={'left'}>
                 <div>
                     <label>Exit Direction from Portal   </label>
-                    <select>
+                    <select onChange={(e) => setOriginExitDirection(e.target.value)}>
                         <option value={`N`}>N</option>
                         <option value={`W`}>W</option>
                         <option value={`E`}>E</option>
@@ -122,7 +122,7 @@ function App() {
                     {grid.map((row, rowIndex) => {
                         return <div className={'row'} key={rowIndex}>
                             {row.map((cell, colIndex) => {
-                                return <Cell key={colIndex} {...cell} size={cellSize}/>
+                                return <Cell key={colIndex} {...cell} size={cellSize} originExitDirection={originExitDirection}/>
                             })}
                         </div>
                     })
